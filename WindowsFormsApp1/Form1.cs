@@ -27,29 +27,35 @@ namespace WindowsFormsApp1
             string textoTelegrama;
             char tipoTelegrama = 'o';
             int numPalabras;
-            double coste;
-            //Leo el telegrama
+            double coste = 0;
+
             textoTelegrama = txtTelegrama.Text;
             // telegrama urgente?
             if (rdUrgente.Checked)
                 tipoTelegrama = 'u';
-            //Obtengo el número de palabras que forma el telegrama
-            numPalabras = textoTelegrama.Length;
-            //Si el telegrama es ordinario
+
+            numPalabras = textoTelegrama
+                .Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Length;
+
             if (tipoTelegrama == 'o')
+            {
                 if (numPalabras <= 10)
-                    coste = 25;
+                    coste = 2.5;
                 else
                     coste = 0.5 * numPalabras;
-            else
-            //Si el telegrama es urgente
-            if (tipoTelegrama == 'u')
+            }
+            else if (tipoTelegrama == 'u')
+            {
                 if (numPalabras <= 10)
                     coste = 5;
                 else
                     coste = 5 + 0.75 * (numPalabras - 10);
-            else
+            }
+            if (numPalabras == 0)
+            {
                 coste = 0;
+            }
             txtPrecio.Text = coste.ToString() + " euros";
         }
 
