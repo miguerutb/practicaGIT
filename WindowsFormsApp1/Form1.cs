@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
             }
             else if (tipoTelegrama == 'u')
             {
-                if (numPalabras <= 10)
+                if (numPalabras <= 10) 
                     coste = 5;
                 else
                     coste = 5 + 0.75 * (numPalabras - 10);
